@@ -1,0 +1,10 @@
+<form #editForm="ngForm">
+    <div>
+        <textarea class="form-control" rows="5" required [(ngModel)]="updatedContent" name="updatedContent">
+                </textarea>
+    </div>
+    <div class="my-3">
+        <button type="submit" class="btn btn-outline-dark" [disabled]="!editForm.form.valid" (click)="onSubmit()">Apply
+            Changes</button>
+    </div>
+</form>

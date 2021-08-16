@@ -1,0 +1,49 @@
+<br>
+
+<app-loading-spinner *ngIf="isLoading; else showData" class="d-flex align-items-center justify-content-center">
+</app-loading-spinner>
+
+<ng-template #showData>
+    <h1>{{post.title}}</h1>
+    <p class="text-muted mb-2 post-misc-data">Written by: {{post.owner}}</p>
+    <div class="row">
+        <div class="col-sm">
+            <pre
+                class="full-post fs-6"><img *ngIf="post.imageURL != null && post.imageURL != ''" align="left" class="post-img img-responsive img-thumbnail mt-1 mb-1" src="{{imageBaseUrl}}{{post.imageURL}}">{{post.content}}</pre>
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <hr />
+        <div class="row row-cols-sm-auto">
+            <p class="col-auto col-md-5 text-muted mb-0 post-misc-data">Created: {{post.createdAt}}</p>
+        </div>
+        <div class="row row-cols-sm-auto">
+            <p *ngIf="post.createdAt != post.modifiedAt" class="col-auto col-md-5 text-muted mb-0 post-misc-data">
+                Modified: {{post.modifiedAt}}</p>
+        </div>
+    </div>
+    <div>
+        <a class="btn btn-outline-dark m-1" routerLink=''>Back to Posts</a>
+        <a class="btn btn-outline-dark m-1" routerLink="/edit/{{post.id}}" *ngIf="isOwner(post.userID)">Edit</a>
+        <a class="btn btn-outline-dark m-1" (click)="showModal()" *ngIf="isOwner(post.userID)">Delete</a>
+    </div>
+
+    <app-modal [message] ="'Are you sure you want to delete this post?'" [type]="'delete'"></app-modal>
+    <div *ngIf="errorService.errorType != ''" class="alert alert-danger">
+        {{errorService.message}}
+    </div>
+
+    <button type="button" class="btn btn-outline-dark m-1" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed">
+    Comments
+   </button>
+  <br>
+    <div id="commentsSection" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+        <br />
+        <app-comments></app-comments>
+        <div>
+            
+        </div>
+    </div>
+
+</ng-template>

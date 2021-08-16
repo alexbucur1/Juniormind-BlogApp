@@ -1,0 +1,45 @@
+<div class="row justify-content-between align-items-center">
+    <h1 class="col-md-4">Recent Posts</h1>
+</div>
+
+<app-loading-spinner *ngIf="isLoading" class="d-flex align-items-center justify-content-center"></app-loading-spinner>
+<div *ngIf="!isLoading">
+    <form #searchForm="ngForm">
+        <div class="d-flex flex-row-reverse">
+            <input type="submit" value="Search" class="btn btn-outline-dark mr-1" (click)="getAll()"/>
+            <input type="text" class="mr-1" required [(ngModel)]="search" name="search" />
+        </div>
+    </form>
+
+    <div *ngFor="let post of posts.items">
+
+        <br>
+        <h2 class="pt-0 post-title">{{post.title}}</h2>
+        <p class="text-muted mb-0 post-misc-data">Written by: {{post.owner}}</p>
+        <p class="text-muted mb-0 post-misc-data">Created: {{post.createdAt | date:'MM/dd/yyyy h:MM:ss'}}</p>
+    
+        <div *ngIf="post.createdAt != post.modifiedAt">
+            <p class="text-muted mb-1 post-misc-data">Modified: {{post.modifiedAt | date:'MM/dd/yyyy h:MM:ss'}}</p>
+        </div>
+    
+        <div class="row">
+            <div class="col-sm">
+                <div *ngIf="post.imageURL != null && post.imageURL != ''; else noImage">
+                    <pre class="full-post fs-6">
+<img align="left" class="post-img img-responsive img-thumbnail mt-1 mb-1" src="{{imageBaseUrl}}{{post.imageURL}}">{{post.content}}</pre>
+                </div>
+                <ng-template #noImage>
+                    <pre class="full-post fs-6">{{post.content}}</pre>
+                </ng-template>
+            </div>
+        </div>
+        <a class="btn btn-outline-dark" [routerLink]="['/details/', post.id]">Read More</a>
+        <hr>
+    </div>
+    
+    <div class="mb-2">
+        <a *ngIf="posts.hasPreviousPage" class="btn btn-outline-dark mx-1" (click)="getAll('previous')">Previous</a> 
+        <a *ngIf="posts.hasNextPage" class="btn btn-outline-dark mx-1" (click)="getAll('next')">Next</a>
+    </div>
+    
+</div>

@@ -1,0 +1,27 @@
+﻿@model BlogApp.Dotnet.ApplicationCore.DTOs.CommentsDTO
+
+<form asp-action="Edit" method="post" class="edit@(Model.ID)" asp-controller="Comments" asp-route-page ="@TempData["CurrentCommsPage"]" id="comment-edit-form-@(Model.ID)">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div>
+        <textarea asp-for="Content" class="form-control" rows="5">
+                </textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+    <div class="mt-3">
+        <input type="submit" value="Apply Changes" class="btn btn-outline-dark edit-btn-@(Model.ID)" id="comment-edit-submit-@(Model.ID)" />
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="collapse"
+                data-bs-target="#editComment@(Model.ID)" aria-expanded="false"
+                aria-controls="editComment@(Model.ID)">
+            Close
+        </button>
+    </div>
+    <input asp-for="PostID" value="@Model.PostID" type="number" class="visually-hidden" />
+    <input asp-for="UserID" value="@Model.UserID" class="visually-hidden" />
+    <input asp-for="Date" value="@Model.Date" type="datetime" class="visually-hidden" />
+    <input asp-for="ID" value="@Model.ID" type="number" class="visually-hidden" />
+    <input asp-for="ParentID" value="@Model.ParentID" type="number" class="visually-hidden" />
+</form>
+<br />
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

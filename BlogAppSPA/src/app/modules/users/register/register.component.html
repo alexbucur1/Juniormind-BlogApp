@@ -1,0 +1,61 @@
+<head>
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+</head>
+<section class="login-clean">
+    <form #registerForm="ngForm">
+        <div class="illustration"><i class="icon ion-ios-navigate"></i></div>
+        <div [hidden]="!registerFailed()"
+        class="alert alert-danger"  id="error-message">
+        {{errorService.message}}
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="firstName"
+            required placeholder="firstName"
+            [(ngModel)]="user.firstName" name="firstName"
+            #firstName="ngModel">
+        </div>
+        <div [hidden]="firstName.valid || firstName.pristine"
+        class="alert alert-danger" id="invalid-firstName-message">
+        First Name is required.
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="lastName"
+            required placeholder="lastName"
+            [(ngModel)]="user.lastName" name="lastName"
+            #lastName="ngModel">
+        </div>
+        <div [hidden]="lastName.valid|| lastName.pristine"
+        class="alert alert-danger" id="invalid-lastName-message">
+         Last Name is required.
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="email"
+            required placeholder="Email"
+            [(ngModel)]="user.email" name="email"
+            #email="ngModel">
+        </div>
+        <div [hidden]="validationService.validateEmail(user.email) || email.pristine"
+        class="alert alert-danger" id="invalid-email-message">
+         The given email does not respect the standard. (ex.: 'name@gmail.com')
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" id="password"
+            required placeholder="Password"
+            [(ngModel)]="user.password" name="password"
+            #password="ngModel">
+        </div>
+        <div [hidden]="validationService.validatePassword(user.password) || password.pristine"
+        class="alert alert-danger" id="invalid-password-message">
+         Password must contain at least: 1 lowercase letter, 1 uppercase letter, 1 digit, 1 symbol, 8 characters.
+        </div>
+        <div class="form-group">
+         <button class="btn btn-primary btn-block btn-outline-dark" id="signup-button"
+         (click)="onSubmit()" [disabled]="!registerForm.form.valid">
+             Sign Up!
+         </button>
+        </div>
+        <input type="button" value="Already a member?" class="options center btn btn-link" routerLink='/login' id="login-redirect-btn"/>
+    </form>
+</section>
+
+

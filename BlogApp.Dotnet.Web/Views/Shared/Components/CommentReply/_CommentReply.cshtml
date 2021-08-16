@@ -1,0 +1,33 @@
+﻿@model BlogApp.Dotnet.ApplicationCore.DTOs.CommentsDTO
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+    <form method="post" asp-action="Create" asp-controller="Comments" id="comment-reply-form">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="grid-container">
+            <div>
+                <textarea asp-for="Content" class="form-control" rows="5">
+                </textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="mt-3">
+                <input type="submit" value="Add" class="btn btn-outline-dark" id="comment-reply-submit"/>
+                <button type="button" class="btn btn-outline-dark" data-bs-toggle="collapse"
+                        data-bs-target="#replyToComment@(Model.ParentID)" aria-expanded="false"
+                        aria-controls="replyToComment@(Model.ParentID)">
+                    Close
+                </button>
+            </div>
+        </div>
+        <span asp-validation-for="Content" class="text-danger"></span>
+        <input asp-for="PostID" value="@Model.PostID" type="number" class="visually-hidden" />
+        <input asp-for="ID" value="@Model.ID" type="number" class="visually-hidden" />
+        <input asp-for="ParentID" value="@Model.ParentID" type="number" class="visually-hidden" />
+        <input asp-for="UserID" value="@Model.UserID" class="visually-hidden" />
+    </form>
+<br />
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

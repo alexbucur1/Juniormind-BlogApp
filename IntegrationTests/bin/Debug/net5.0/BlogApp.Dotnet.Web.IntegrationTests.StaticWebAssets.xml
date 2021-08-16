@@ -1,0 +1,4 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="/Identity" Path="C:\Users\Gabriela\.nuget\packages\microsoft.aspnetcore.identity.ui\5.0.8\staticwebassets\V4\" />
+  <ContentRoot BasePath="_content/BlogApp.Dotnet.Web" Path="C:\Users\Gabriela\Documents\GitHub\blog-app\BlogApp\BlogApp.Dotnet.Web\wwwroot\" />
+</StaticWebAssets>

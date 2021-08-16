@@ -1,0 +1,65 @@
+﻿@model BlogApp.Dotnet.ApplicationCore.DTOs.PaginatedDTO<BlogApp.Dotnet.Web.ViewModels.BlogPostViewModel>
+
+@{
+    ViewData["Title"] = "Blog Posts";
+}
+
+<div class="row justify-content-between align-items-center">
+    <h1 class="col-md-4">Recent Posts</h1>
+</div>
+
+<form asp-action="Index" asp-controller="Posts" method="get" id="search-posts">
+    <div class="d-flex flex-row-reverse">
+        <input type="submit" value="Search" class="btn btn-outline-dark me-1" id="search-posts-submit"/>
+        <input type="text" name="SearchString" value="@TempData["CurrentFilter"]" class="me-1" />
+    </div>
+</form>
+
+@foreach (var BlogPost in Model.Items)
+{
+    <br>
+    <h2 class="pt-0 post-title">@Html.DisplayFor(post => BlogPost.Title)</h2>
+    <p class="text-muted mb-0 post-misc-data">Written by: @Html.DisplayFor(post => BlogPost.Owner)</p>
+    <p class="text-muted mb-0 post-misc-data">Created: @Html.DisplayFor(post => BlogPost.CreatedAt)</p>
+
+
+    @if (@BlogPost.ShowModifiedDate)
+    {
+        <p class="text-muted mb-1 post-misc-data">Modified: @Html.DisplayFor(post => BlogPost.ModifiedAt)</p>
+    }
+
+    <div class="row">
+        <div class="col-sm">
+            <pre class="full-post fs-6">
+            @if (BlogPost.ShowPostImage) 
+            {<img align="left" class="post-img img-responsive img-thumbnail mt-1 mb-1" src=@BlogPost.ImageURL>}@Html.DisplayFor(post => BlogPost.Content)</pre>
+        </div>
+    </div>
+    <input type="button" value="Read More" onclick="location.href='@Url.Action("Details", "Posts", new { id = BlogPost.ID })'" class="btn btn-outline-dark" />
+    <hr>
+}
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "visually-hidden" : "";
+    var nextDisabled = !Model.HasNextPage ? "visually-hidden" : "";
+    var noResultsFound = TempData["NoResultsFound"].ToString() == "true" ? "" : "visually-hidden";
+}
+
+<div class="mt-2  @noResultsFound">
+    <p>
+        No results were found while searching for "@TempData["CurrentFilter"]".
+    </p>
+</div>
+<div class="mb-2">
+    <a asp-action="Index" id="previous-button"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@TempData["CurrentFilter"]"
+       class="btn btn-outline-dark @prevDisabled">
+        Previous
+    </a>
+    <a asp-action="Index" id="next-button"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@TempData["CurrentFilter"]"
+       class="btn btn-outline-dark @nextDisabled">
+        Next
+    </a>
+</div>

@@ -1,0 +1,5 @@
+@media (min-width: 767px) {
+    .img-preview {
+        max-width: 70% !important;
+    }
+}

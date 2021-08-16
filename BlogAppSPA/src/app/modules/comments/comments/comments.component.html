@@ -1,0 +1,73 @@
+<app-loading-spinner *ngIf="isLoading; else showData" class="d-flex align-items-center justify-content-center">
+</app-loading-spinner>
+
+<ng-template #showData>
+    <form #searchForm="ngForm" *ngIf="comments.items.length != 0">
+        <div class="d-flex flex-row-reverse">
+            <input type="submit" value="Search" class="btn btn-outline-dark mr-1" (click)="getAll()" />
+            <input type="text" class="mr-1" required [(ngModel)]="search" name="search" />
+        </div>
+    </form>
+
+    <div class="d-flex justify-content-center pb-3">
+        <a *ngIf="comments.hasPreviousPage" class="btn btn-outline-dark mx-1"
+            (click)="getAll('previous')">Previous</a>
+    </div>
+    <div *ngFor="let comment of comments.items; let i = index">
+        <div class="container-fluid comment" id="comment{{comment.id}}">
+            <div class="row">
+                <div class="card card-body bg-light">
+                    <p><b>{{comment.userFullName}}: </b><span class="text-justify"
+                            style="white-space:pre-wrap">{{comment.content}}</span></p>
+                </div>
+            </div>
+            <div class="row gap-1 mb-3">
+                <div class="col-sm">
+                    <div class="p-2 text-muted">
+                        {{comment.date | date:'MM/dd/yyyy h:MM:ss'}}
+                    </div>
+                </div>
+                <div class="col-sm">
+                        <button type="button" class="btn px-1 shadow-none" (click)="showEditor(comment.id)"
+                        *ngIf="isOwner(comment.userID)">
+                        Edit
+                    </button>
+                    <button type="button" class="btn px-1 shadow-none" (click)="showModal(comment.id)"
+                    *ngIf="isOwner(comment.userID)">
+                        Delete
+                    </button>
+                    <button type="button" class="btn px-1 shadow-none" (click)="showAddReplySection(comment.id)">
+                        Reply
+                    </button>
+                    <button type="button" class="btn px-1 shadow-none" *ngIf="comment.repliesCount > 0"
+                        (click)="showReplies(comment.id)">
+                        Replies
+                    </button>
+                </div>
+            </div>
+            <div *ngIf="editID == comment.id">
+                <app-edit-comment [model]="comment" (editedEvent)="showEditor($event)"></app-edit-comment>
+            </div>
+            <div *ngIf="repliesID == comment.id" class="py-2">
+                <app-replies [postId]="id" [commId]="comment.id"></app-replies>
+            </div>
+            <div *ngIf="replyID == comment.id">
+                <app-create-reply [postID]="id" [parrentID]="comment.id"></app-create-reply>
+            </div>
+        </div>
+
+        <app-modal [message]="'Are you sure you want to delete this comment?'"
+         [type]="'delete'"></app-modal>
+
+    </div>
+
+    <div class="d-flex justify-content-center pb-3">
+        <a *ngIf="comments.hasNextPage" class="btn btn-outline-dark mx-1"
+            (click)="getAll('next')">Next</a>
+    </div>
+
+</ng-template>
+
+<div>
+    <app-create-comment></app-create-comment>
+</div>

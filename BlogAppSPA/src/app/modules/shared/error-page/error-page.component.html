@@ -1,0 +1,22 @@
+
+<section class="login-clean">
+    <div id="error">
+        <div class="d-flex flex-column justify-content-center mt-5">
+            <div class=" d-flex justify-content-center">
+                <h2>{{title}}</h2>
+        </div>
+        <div class="d-flex justify-content-center">
+            <p>{{errorService.message}}</p>
+        </div>
+        <div class="d-flex justify-content-center">
+            <img src="../assets/notification-error.svg" width="150" height="150" *ngIf="title == 'Server Error.'"/>
+            <img src="../assets/forbidden.svg" width="150" height="150" *ngIf="title == 'Forbidden.'"/>
+        </div>
+        <br>
+        <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-outline-dark mb-2 mx-1" routerLink="{{previousPage}}" *ngIf="title == 'Forbidden.'">Go Back</button>
+                <button type="submit" class="btn btn-outline-dark mb-2 mx-1" *ngIf="title == 'Server Error.'" (click)="refresh()">Refresh</button>
+        </div>
+        </div>
+    </div>
+</section>

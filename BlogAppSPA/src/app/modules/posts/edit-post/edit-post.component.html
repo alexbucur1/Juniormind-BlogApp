@@ -1,0 +1,53 @@
+<h1>Edit Post</h1>
+<hr />
+
+
+<app-loading-spinner *ngIf="isLoading; else showData"class="d-flex align-items-center justify-content-center"></app-loading-spinner>
+
+<ng-template #showData>
+<form #postForm="ngForm">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" required [(ngModel)]="post.title" name="title"
+                    #title="ngModel">
+                <div [hidden]="(title.untouched && title.pristine) || title.valid" class="alert alert-danger p-1 my-2">
+                    Title is required
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="mb-3">
+                    <label for="formFile" class="control-label mr-2">Choose an image: </label>
+                    <input #file type="file" name="imageFile" id="file-upload-image" accept="image/*" (change)="preview(file.files)" />
+                    <div [hidden]="message == ''" class="alert alert-danger p-1 my-2">
+                        {{message}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div align="center" class="col-md-6 ml-1 mt-2 py-1">
+            <img [src]="imgURL" id="img-preview" class="img-thumbnail img-responsive img-preview" *ngIf="imgURL" />
+        </div>
+
+    </div>
+    <div class="col-auto px-0">
+        <label for="content">Content</label>
+        <textarea class="form-control mb-3" rows="22" style="text-align:justify;" id="content" required [(ngModel)]="post.content"
+        name="content" #content="ngModel"></textarea>
+        <div [hidden]="(content.untouched && content.pristine) || content.valid" class="alert alert-danger p-2 mt-2">
+            Content is required
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-outline-dark mb-2 mx-1" (click)="showModal()">Cancel</button>
+    <button type="submit" class="btn btn-outline-dark mb-2 mx-1" [disabled]="!postForm.form.valid" (click)="onSubmit()">Save</button>
+</form>
+<br>
+<div *ngIf="errorService.errorType == 'server_not_responding'" class="alert alert-danger">
+    {{errorService.message}}
+</div>
+
+<app-modal [type]="'cancel'" [message]="'Are you sure you want to leave this page? All work will be lost.'"></app-modal>
+</ng-template>

@@ -1,0 +1,22 @@
+
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h5 class="modal-title" id="modal-basic-title">Confirm Action</h5>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <h5>{{message}}</h5>
+        </div>
+        <div class="modal-footer">
+            <div *ngIf="type == 'delete'">
+            <button type="button" class="btn btn-outline-dark m-1" (click)="modal.dismiss()">Cancel</button>
+            <button type="button" class="btn btn-danger m-1" (click)="modal.close()">Delete</button>
+            </div>
+            <div *ngIf="type == 'cancel'">
+            <button type="button" class="btn btn-outline-dark m-1" (click)="modal.dismiss()">No</button>
+            <button type="button" class="btn btn-danger m-1" (click)="modal.close()">Yes</button>
+            </div>
+        </div>
+    </ng-template>

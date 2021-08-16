@@ -1,0 +1,47 @@
+﻿.td {
+    padding-top: 16px;
+}
+
+.btn-primary {
+    transform: scale(0.80);
+    text-align: center;
+    background: rgb(140, 157, 220);
+}
+
+.delete-btn {
+    transform: scale(0.80);
+    text-align: center;
+    background: var(--bs-red);
+}
+
+#modal-btn {
+    transform: scale(1);
+    text-align: center;
+    background: var(--bs-red);
+}
+
+.table-responsive {
+    margin-top: 35px;
+}
+
+.modal {
+    z-index: 9999;
+    position: fixed;
+}
+
+.form {
+    margin-top: 35px;
+}
+
+
+@media (min-width: 992px) {
+    .grid-striped .row:nth-child(odd) {
+        background-color: #f8f9fa !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .name {
+        font-size: 1.1rem;
+    }
+}

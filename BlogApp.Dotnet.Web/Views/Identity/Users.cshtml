@@ -1,0 +1,111 @@
+﻿@model BlogApp.Dotnet.ApplicationCore.DTOs.PaginatedDTO<BlogApp.Dotnet.ApplicationCore.DTOs.UserDTO>
+
+@{
+    ViewData["Title"] = "All Users";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Style/Users.css">
+</head>
+
+<body>
+    <div class="row justify-content-between">
+        <h1 class="col-md-2 pt-2">Users</h1>
+        <div class="col-md-5 pt-3">
+            <form id="user-search" asp-action="Users" method="get">
+                <div class="row float-md-end float-sm-start d-inline-flex">
+                    <p>
+                        <input id="searchbox-users" type="text" class="col me-1 mt-1 pt-1 pb-1" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                        <input id="search-btn-submit" type="submit" value="Search" class="col btn btn-outline-dark mb-1" />
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="container-fluid d-none d-md-block">
+        <div class="row d-flex align-items-center border-bottom border-bottom-3 pt-4 fw-bold">
+            <div class="col-6 col-md-3 p-1">
+                <a class="first-name-sort" asp-action="Users" asp-route-sortOrder="@ViewData["FirstNameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">First Name</a>
+            </div>
+            <div class="col-6 col-md-3 p-1">
+                <a class="last-name-sort" asp-action="Users" asp-route-sortOrder="@ViewData["LastNameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Last Name</a>
+            </div>
+            <div class="col-6 col-md-3 p-1">
+                <a class="email-sort" asp-action="Users" asp-route-sortOrder="@ViewData["EmailSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Email</a>
+            </div>
+            <div class="col-md-3 p-1 px-4">
+                Actions
+            </div>
+        </div>
+    </div>
+    <div class="d-md-none pt-4"></div>
+    <div class="container-fluid grid-striped">
+        @foreach (var user in Model.Items)
+        {
+            <div class="row border border-1 border-bottom-2 d-flex align-items-center">
+                <div class="col-6 col-md-3 p-2 name first-name">
+                    @user.FirstName
+                </div>
+                <div class="col-6 col-md-3 p-2 name last-name">
+                    @user.LastName
+                </div>
+                <div class="col-md-3 text-break p-2 email">
+                    @user.Email
+                </div>
+                <div class="col-md-3 p-1">
+
+                    <div class="nav-item dropdown pr-4">
+                        <a aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle nav-link text-dark" href="#">
+                            <img src="~/Images/options-outline.svg" width="24" height="24" />  Options
+                        </a>
+
+                        <ul class="dropdown-menu text-small shadow">
+                            <li><a class="dropdown-item" href="@Url.Action("Edit", "Identity", new { id = user.Id } )">Edit</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#delete-modal-@user.Id">Delete</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="modal fade" id="delete-modal-@user.Id" tabindex="-1" aria-labelledby="delete-modal-label" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="delete-modal-label">Confirm Deletion</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h5>Are you sure you want to delete this user?</h5>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+                                    <button class="btn btn-primary @user.Id" id="modal-btn" type="button" onclick="location.href='@Url.Action("Delete", "Identity", new { id = user.Id } )'">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <br />
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+
+    <a asp-action="Users"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-outline-dark previous-page @prevDisabled">
+        Previous
+    </a>
+    <a asp-action="Users"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-outline-dark next-page @nextDisabled">
+        Next
+    </a>
+</body>

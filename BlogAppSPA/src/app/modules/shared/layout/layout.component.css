@@ -1,0 +1,33 @@
+
+.container-body {
+    max-width: 900px !important;
+}
+
+html, body {
+    height: 100%;
+}
+
+.main-and-footer {
+    height: auto !important;
+    min-height: 100%;
+}
+.content {
+    height: 100%;
+}
+
+.my-footer{
+    min-height: 10%;
+    position: relative;
+    
+}
+
+.flex-elmnt-100-height{
+    flex:1;
+}
+
+.bg-theme-color {
+    background-color: rgb(204, 204, 255)
+}
+.content {
+min-height: 100vh;
+}

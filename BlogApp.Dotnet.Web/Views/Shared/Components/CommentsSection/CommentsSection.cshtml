@@ -1,0 +1,127 @@
+﻿@model IEnumerable<BlogApp.Dotnet.Web.ViewModels.CommentViewModel>
+
+<body>
+    @if (ViewBag.HasPreviousComm)
+    {
+        <div class="pb-4 d-flex justify-content-center">
+            <form asp-action="Details" asp-route-id="@ViewBag.PostId" asp-route-next="true" asp-route-page="@TempData["CurrentCommsPage"]" method="get">
+                <div class="form-actions no-color">
+                    <input type="hidden" name="prevComms" value="true" />
+                    <input type="hidden" name="nextComms" value="false" />
+                    <input type="hidden" name="commsPage" value="@TempData["CurrentCommsPage"]" />
+                    <input type="hidden" name="SearchString" value="@TempData["Search"]" />
+                    <input type="submit" value="Show Previous" class="btn btn-outline-dark  mt-1" />
+                </div>
+            </form>
+        </div>
+    }
+
+    @if (Model.Count() == 0 && TempData["Search"] != "" && TempData["Search"] != null)
+            {
+                <div class="p-4">
+                    There are no results for "@TempData["Search"]".
+                </div>
+            }
+
+    @foreach (var CommentViewModel in Model)
+    {
+        @if (CommentViewModel.Comment != null)
+        {
+            <div class="container-fluid comment" id="comment@(CommentViewModel.Comment.ID)">
+                <div class="row">
+                    <div class="card card-body bg-light">
+                        <p id="comment-content-@(CommentViewModel.Comment.ID)"><b>@CommentViewModel.Comment.UserFullName: </b><span class="text-justify" style="white-space:pre-wrap">@Html.DisplayFor(comment => CommentViewModel.Comment.Content)</span></p>
+                    </div>
+                </div>
+                <div class="row row-cols-auto gap-1 mb-3">
+                    <div class="col">
+                        <button type="button" class="btn p-0 m-0" data-bs-toggle="collapse" disabled>
+                            @Html.DisplayFor(comment => CommentViewModel.Comment.Date)
+                        </button>
+                    </div>
+                    @if (CommentViewModel.IsOwnerOrAdmin)
+                    {
+                        <div class="col">
+                            <button type="button" class="btn p-0" data-bs-toggle="collapse" id="editButton@(CommentViewModel.Comment.ID)"
+                                    onclick="closeReplyFeature('@(CommentViewModel.Comment.ID)')"
+                                    data-bs-target="#editComment@(CommentViewModel.Comment.ID)" aria-expanded="false"
+                                    aria-controls="editComment@(CommentViewModel.Comment.ID)">
+                                Edit
+                            </button>
+                        </div>
+                    }
+                    @if (CommentViewModel.IsOwnerOrAdmin)
+                    {
+                        <div class="col">
+                            <button type="button" class="btn p-0" data-bs-toggle="modal"
+                                    data-bs-target="#deleteComment@(CommentViewModel.Comment.ID)" aria-expanded="false"
+                                    aria-controls="deleteComment@(CommentViewModel.Comment.ID)">
+                                Delete
+                            </button>
+                        </div>
+                    }
+                    <div class="col">
+                        <button type="button" class="btn p-0" data-bs-toggle="collapse" onclick="closeEditFeature('@(CommentViewModel.Comment.ID)')"
+                                id="replyButton@(CommentViewModel.Comment.ID)"
+                                data-bs-target="#replyToComment@(CommentViewModel.Comment.ID)" aria-expanded="false"
+                                aria-controls="replyToComment@(CommentViewModel.Comment.ID)">
+                            Reply
+                        </button>
+                    </div>
+                    @if (CommentViewModel.Replies.Count() > 0)
+                    {
+                        <div class="col">
+                            <button type="button" class="btn p-0" data-bs-toggle="collapse"
+                                    data-bs-target="#showRepliesForComment@(CommentViewModel.Comment.ID)" aria-expanded="false"
+                                    aria-controls="showRepliesForComment@(CommentViewModel.Comment.ID)">
+                                Show Replies
+                            </button>
+                        </div>
+                    }
+                </div>
+                <div class="collapse container-fluid" id="editComment@(CommentViewModel.Comment.ID)">
+                    @(await Component.InvokeAsync("CommentEdit", CommentViewModel.Comment))
+                </div>
+                @(await Component.InvokeAsync("CommentDelete", CommentViewModel.Comment))
+                <div class="collapse container-fluid" id="replyToComment@(CommentViewModel.Comment.ID)">
+                    @(await Component.InvokeAsync("CommentReply", new { receiverID = CommentViewModel.Comment.ID, postID = CommentViewModel.Comment.PostID}))
+                </div>
+                <div class="container collapse" id="showRepliesForComment@(CommentViewModel.Comment.ID)">
+                    <br />
+                    @(await Component.InvokeAsync("RepliesSection", CommentViewModel.Replies))
+                </div>
+            </div>
+        }
+    }
+
+    @if (ViewBag.HasNextComm)
+    {
+        <div class="pb-4 d-flex justify-content-center">
+            <form asp-action="Details" asp-route-id="@ViewBag.PostId" asp-route-next="true" asp-route-page="@TempData["CurrentCommsPage"]" method="get">
+                <div class="form-actions no-color">
+                    <input type="hidden" name="nextComms" value="true" />
+                    <input type="hidden" name="prevComms" value="false" />
+                    <input type="hidden" name="commsPage" value="@TempData["CurrentCommsPage"]" />
+                    <input type="hidden" name="SearchString" value="@TempData["Search"]" />
+                    <input type="submit" value="Show Next" class="btn btn-outline-dark  mt-1" />
+                </div>
+            </form>
+        </div>
+    }
+</body>
+<script>
+    function closeEditFeature(ID) {
+        var elmnt = document.getElementById("editComment" + ID);
+        if (window.getComputedStyle(elmnt).display === "block") {
+            document.getElementById("editButton" + ID).click();
+        }
+    }
+
+    function closeReplyFeature(ID) {
+        var elmnt = document.getElementById("replyToComment" + ID);
+        if (window.getComputedStyle(elmnt).display === "block") {
+            document.getElementById("replyButton" + ID).click();
+        }
+    }
+</script>
+

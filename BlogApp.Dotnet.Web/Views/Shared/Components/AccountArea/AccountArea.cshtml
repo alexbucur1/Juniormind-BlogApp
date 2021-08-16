@@ -1,0 +1,34 @@
+﻿@model BlogApp.Dotnet.ApplicationCore.DTOs.UserDTO
+
+        <link rel="stylesheet" href="~/Style/Login.css">
+
+@if (User.Identity.IsAuthenticated)
+{
+ 
+    <span>
+        <input type="button" value="Create New Post" onclick="location.href='@Url.Action("Create","Posts")'" class="btn btn-outline-dark" />
+    </span>
+
+
+    <div>
+        <hr class="dropdown-divider">
+    </div>
+
+    <div class="nav-item dropdown pr-4 mx-1">
+        <a aria-expanded="false" data-bs-toggle="dropdown" class="dropdown-toggle nav-link text-dark" href="#">
+            <img class="rounded-circle" src="https://github.com/mdo.png" width="32" height="32" />  Account
+        </a>
+
+        <ul class="dropdown-menu text-small shadow">
+            <li><a class="dropdown-item" href="@Url.Action("Edit","Identity", new { id = Model.Id })">Settings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href='@Url.Action("Logout","Identity")'>Logout</a></li>
+        </ul>
+    </div>
+}
+else
+{
+    <span>
+        <input type="button" value="Login" id="Login" onclick="location.href='@Url.Action("Login","Identity")'" class="btn btn-outline-dark" />
+    </span>
+}

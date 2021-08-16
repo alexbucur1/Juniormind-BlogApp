@@ -1,0 +1,18 @@
+<span>
+    <ul class="navbar-nav flex-grow-1">
+      <input type="button" value="Login"  routerLink='/login' class="btn btn-outline-dark login" id="login-btn" *ngIf="userId == ''"/>
+      <input type="button" value="Create New Post"  routerLink='/create' class="btn btn-outline-dark" *ngIf="userId != ''" id="create-btn"/>
+      <div>
+        <hr class="dropdown-divider">
+    </div>
+    <div class="nav-item pr-4" ngbDropdown *ngIf="userId != ''">
+        <button type="button" class="nav-link text-dark btn btn-link" ngbDropdownToggle  id="user-widget">
+            <img class="rounded-circle" src="https://github.com/mdo.png" width="32" height="32" />  {{userFullName}}
+        </button>
+            <div ngbDropdownMenu aria-labelledby="user-widget">
+                <button ngbDropdownItem routerLink='/users/edit/{{userId}}' id="settings-btn">Settings</button>
+                <button ngbDropdownItem  routerLink='/' (click)="logout()" id="logout-btn">Logout</button>
+            </div>
+    </div>
+</ul>
+</span>

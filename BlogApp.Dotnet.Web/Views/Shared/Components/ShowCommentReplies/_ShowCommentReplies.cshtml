@@ -1,0 +1,54 @@
+﻿@model IEnumerable<BlogApp.Dotnet.ApplicationCore.DTOs.CommentsDTO>
+
+<div>
+    @foreach (var Comment in Model)
+    {
+        <div class="container-fluid" id="comment@(Comment.ID)">
+            <div class="row">
+                <div class="card card-body bg-light">
+                    <p> @(await Component.InvokeAsync("UserFullName", Comment.UserID))<span class="text-justify" style="white-space:pre-wrap">@Html.DisplayFor(comment => Comment.Content)</span></p>
+                </div>
+            </div>
+            <div class="row row-cols-auto gap-3">
+                <div class="col">  @Html.DisplayFor(comment => Comment.Date)</div>
+                <div class="col">
+                    <button type="button" class="btn p-0" data-bs-toggle="collapse"
+                            data-bs-target="#editComment@(Comment.ID)" aria-expanded="false"
+                            aria-controls="editComment@(Comment.ID)">
+                        Edit
+                    </button>
+                    <button type="button" class="btn p-0" data-bs-toggle="modal"
+                            data-bs-target="#deleteComment@(Comment.ID)" aria-expanded="false"
+                            aria-controls="deleteComment@(Comment.ID)">
+                        Delete
+                    </button>
+                    <button type="button" class="btn p-0" data-bs-toggle="collapse"
+                            data-bs-target="#replyToComment@(Comment.ID)" aria-expanded="false"
+                            aria-controls="replyToComment@(Comment.ID)">
+                        Reply
+                    </button>
+                    <button type="button" class="btn p-0" data-bs-toggle="collapse"
+                            data-bs-target="#showRepliesForComment@(Comment.ID)" aria-expanded="false"
+                            aria-controls="showRepliesForComment@(Comment.ID)">
+                        Show Repplies
+                    </button>
+
+                </div>
+            </div>
+        </div>
+        <div class="collapse container" id="editComment@(Comment.ID)" style="width:100%;">
+            <div>
+                @(await Component.InvokeAsync("CommentEdit", Comment))
+            </div>
+        </div>
+        <div>
+            @(await Component.InvokeAsync("CommentDelete", Comment))
+        </div>
+        <div class="collapse container" id="replyToComment@(Comment.ID)" style="width:100%;">
+            <div>
+                @(await Component.InvokeAsync("CommentReply", Comment))
+            </div>
+        </div>
+        <br />
+    }
+</div>

@@ -1,0 +1,101 @@
+﻿@model BlogApp.Dotnet.Web.ViewModels.BlogPostViewModel
+
+@{
+    ViewData["Title"] = @Html.DisplayFor(model => model.Title);
+}
+
+<br>
+<h1 class="post-title">@Html.DisplayFor(model => model.Title)</h1>
+<p class="text-muted mb-2 post-misc-data">Written by: @Html.DisplayFor(model => model.Owner)</p>
+
+<div class="row">
+    <div class="col-sm">
+        <pre class="full-post fs-6">
+            @if (Model.ShowPostImage) 
+            {<img align="left" class="post-img img-responsive img-thumbnail mt-1 mb-1" src=@Model.ImageURL>}@Html.DisplayFor(post => Model.Content)</pre>
+    </div>
+</div>
+
+<div class="mb-4">
+    <hr />
+    <div class="row row-cols-sm-auto">
+        <p class="col-auto col-md-5 text-muted mb-0 post-misc-data">Created:  @Html.DisplayFor(model => model.CreatedAt)</p>
+    </div>
+    <div class="row row-cols-sm-auto">
+        @if (@Model.ShowModifiedDate)
+        {
+        <p class="col-auto col-md-5 text-muted mb-0 post-misc-data">Modified:  @Html.DisplayFor(model => model.ModifiedAt)</p>
+        }
+    </div>
+</div>
+<div>
+    <input type="button" id="btn-back" value="Back to Posts" onclick="location.href='@Url.Action("Index","Posts")'" class="btn btn-outline-dark" />
+    @if (Model.IsOwnerOrAdmin)
+    {
+        <input type="button" value="Edit" onclick="location.href='@Url.Action("Edit", "Posts", new { id = Model.ID })'" class="btn btn-outline-dark" />
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#deleteModal">
+            Delete
+        </button>
+    }
+    <br />
+    <hr />
+    <button type="button" class="btn btn-outline-dark" data-bs-toggle="collapse" data-bs-target="#commentsSection" aria-expanded="false" aria-controls="commentsSection">
+        Comments
+    </button>
+</div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5>Are you sure you want to delete this post?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+                    <form id="deleteButton" asp-action="Delete">
+                        <input type="hidden" asp-for="ID" />
+                        <input id="deleteButtonSubmit" type="submit" value="Delete" class="btn btn-danger" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="collapse show" id="commentsSection">
+
+        <div class="d-flex flex-row-reverse bd-highlight">
+
+            <form asp-action="Details" asp-route-id="@Model.ID" method="get">
+
+                <input type="text" class="mt-1 align-middle" name="SearchString" value="@TempData["Search"]" />
+                <input type="submit" value="Search" class="btn btn-outline-dark  mt-1" />
+
+            </form>
+        </div>
+
+
+        <div class="collapse show" id="commentsSection">
+            <br />
+            @(await Component.InvokeAsync("CommentsSection", new { PostID = Model.ID, searchString = @TempData["Search"], commsPageNumber = @TempData["CurrentCommsPage"] }))
+            <div>
+                @(await Component.InvokeAsync("CommentsEditor", new { PostID = Model.ID}))
+            </div>
+        </div>
+
+        <br />
+        <script>
+    window.onload = function scrollToComment() {
+        var elmnt = document.getElementById("comment" + @TempData["CommID"]);
+
+        if (@TempData["ParentID"] != "0") {
+            var repliesSection = document.getElementById("showRepliesForComment" + @TempData["ParentID"]);
+            repliesSection.className += " " + "show";
+        }
+
+        elmnt.scrollIntoView(false);
+    }
+        </script>

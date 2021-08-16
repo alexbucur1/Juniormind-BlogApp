@@ -1,0 +1,62 @@
+<app-loading-spinner *ngIf="isLoading" class="d-flex align-items-center justify-content-center"></app-loading-spinner>
+<div *ngIf="!isLoading">
+<h1 class="pt-2">Edit Information</h1>
+<hr />
+<form #editUserForm="ngForm" class="form">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="user.firstName">First Name</label>
+                <input type="text" class="form-control" id="firstName"
+                required placeholder="firstName"
+                [(ngModel)]="user.firstName" name="firstName" value="{{user.firstName}}"
+                #firstName="ngModel">
+            </div>
+            <div [hidden]="firstName.valid || firstName.pristine"
+            class="alert alert-danger">
+            First Name is required.
+            </div>
+            <label for="user.lastName">Last Name</label>
+            <div class="form-group">
+                <input type="text" class="form-control" id="lastName"
+                required placeholder="lastName"
+                [(ngModel)]="user.lastName" name="lastName" value="{{user.lastName}}"
+                #lastName="ngModel">
+            </div>
+            <div [hidden]="lastName.valid || lastName.pristine"
+            class="alert alert-danger">
+            Last Name is required.
+            </div>
+            <label for="user.email">Email</label>
+            <div class="form-group">
+                <input type="text" class="form-control" id="email"
+                required placeholder="Email"
+                [(ngModel)]="user.email" name="email" value="{{user.email}}"
+                #email="ngModel">
+            </div>
+            <div [hidden]="validationService.validateEmail(user.email) || email.pristine" id="invalid-email-message"
+            class="alert alert-danger">
+            The given email does not respect the standard. (ex.: 'name@gmail.com')
+            </div>
+            <label for="user.password">Password</label>
+            <div class="form-group">
+                <input type="password" class="form-control" id="password"
+                 placeholder="Password"
+                [(ngModel)]="user.password" name="password"
+                #password="ngModel">
+            </div>
+            <div [hidden]="validationService.validatePassword(user.password) || password.pristine"
+            class="alert alert-danger" id="invalid-password-message">
+             Password must contain at least: 1 lowercase letter, 1 uppercase letter, 1 digit, 1 symbol, 8 characters.
+            </div>
+        </div>
+    </div>
+    <input type="button" value="Cancel"  class="btn btn-outline-dark m-1" (click)="goBack()" id="back-button"/>
+    <input type="button" value="Save"  class="btn btn-outline-dark m-1"
+     (click)="onSubmit()" [disabled]="!editUserForm.form.valid" id="save-button"/>
+</form>
+<br>
+<div [hidden]="!editFailed()" id="error-message"
+        class="alert alert-danger">
+        {{errorService.message}}
+        </div>

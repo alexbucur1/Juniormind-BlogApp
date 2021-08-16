@@ -1,0 +1,66 @@
+﻿@model IEnumerable<BlogApp.Dotnet.Web.ViewModels.CommentViewModel>
+
+<div>
+    @foreach (var replyViewModel in Model)
+    {
+            <div class="container ml-3" id="comment@(replyViewModel.Comment.ID)">
+                <div class="row">
+                    <div class="card card-body bg-light">
+                        <p id="reply-content-@(replyViewModel.Comment.ID)"><b>@replyViewModel.Comment.UserFullName: </b><span class="text-justify" style="white-space:pre-wrap">@Html.DisplayFor(comment => replyViewModel.Comment.Content)</span></p>
+                    </div>
+                </div>
+                <div class="row row-cols-auto gap-1">
+                    <div class="col">
+                        <button type="button" class="btn p-0 m-0" data-bs-toggle="collapse" disabled>
+                            @Html.DisplayFor(comment => replyViewModel.Comment.Date)
+                        </button>
+                    </div>
+                    @if (replyViewModel.IsOwnerOrAdmin)
+                    {
+                        <div class="col">
+                            <button type="button" class="btn p-0" data-bs-toggle="collapse"
+                                    onclick="closeReplyFeature('@(replyViewModel.Comment.ID)')"
+                                    id="editButton@(replyViewModel.Comment.ID)"
+                                    data-bs-target="#editComment@(replyViewModel.Comment.ID)" aria-expanded="false"
+                                    aria-controls="editComment@(replyViewModel.Comment.ID)">
+                                Edit
+                            </button>
+                        </div>
+                    }
+                    @if (replyViewModel.IsOwnerOrAdmin)
+                    {
+                        <div class="col">
+                            <button type="button" class="btn p-0" data-bs-toggle="modal"
+                                    data-bs-target="#deleteComment@(replyViewModel.Comment.ID)" aria-expanded="false"
+                                    aria-controls="deleteComment@(replyViewModel.Comment.ID)">
+                                Delete
+                            </button>
+                        </div>
+                    }
+                        <div class="col">
+                            <button type="button" class="btn p-0" data-bs-toggle="collapse"
+                                    onclick="closeEditFeature('@(replyViewModel.Comment.ID)')"
+                                    id="replyButton@(replyViewModel.Comment.ID)"
+                                    data-bs-target="#replyToComment@(replyViewModel.Comment.ID)" aria-expanded="false"
+                                    aria-controls="replyToComment@(replyViewModel.Comment.ID)">
+                                Reply
+                            </button>
+                        </div>
+                    </div>
+                <div class="collapse container-fluid" id="editComment@(replyViewModel.Comment.ID)">
+                    <div>
+                        @(await Component.InvokeAsync("CommentEdit", replyViewModel.Comment))
+                    </div>
+                </div>
+                <div>
+                    @(await Component.InvokeAsync("CommentDelete", replyViewModel.Comment))
+                </div>
+                <div class="collapse container-fluid" id="replyToComment@(replyViewModel.Comment.ID)">
+                    <div>
+                        @(await Component.InvokeAsync("CommentReply", new { receiverID = replyViewModel.Comment.ParentID, postID = replyViewModel.Comment.PostID }))
+                    </div>
+                </div>
+            </div>
+            <br />
+    }
+</div>

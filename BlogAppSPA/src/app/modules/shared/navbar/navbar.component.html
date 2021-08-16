@@ -1,0 +1,15 @@
+<header class="sticky-top">
+    <nav class="navbar navbar-expand-lg bg-theme-color border border-top-0 border-start-0 border-end-0">
+        <div class="container-fluid">
+            <a href="#" routerLink=''>
+                <img src="../assets/Icon.ico" width="30" height="30">
+            </a>
+            <button class="navbar-toggler " type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+                <img src="../assets/menu-icon.ico" width="33" height="33">
+            </button>
+            <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" id="navbarContent">
+                <ng-content></ng-content>
+            </div>
+        </div>
+    </nav>
+</header>

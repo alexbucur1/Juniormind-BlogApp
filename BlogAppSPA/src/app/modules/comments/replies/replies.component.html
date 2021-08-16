@@ -1,0 +1,52 @@
+<app-loading-spinner *ngIf="isLoading; else showData" class="d-flex align-items-center justify-content-center">
+</app-loading-spinner>
+
+<ng-template #showData>
+    <h5>Replies</h5>
+    <hr/>
+    <div class="d-flex justify-content-center pb-3">
+        <a *ngIf="replies.hasPreviousPage" class="btn btn-outline-dark mx-1" (click)="getAll('previous')">Previous</a> 
+    </div>
+
+    <div *ngFor="let reply of replies.items">
+        <div class="container-fluid comment" id="comment{{reply.id}}">
+            <div class="row">
+                <div class="card card-body bg-light">
+                    <p><b>{{reply.userFullName}}: </b><span
+                            class="text-justify" style="white-space:pre-wrap">{{reply.content}}</span></p>
+                </div>
+            </div>
+            <div class="row row-cols-auto gap-1 mb-3">
+                <div class="col-sm">
+                    <div class="p-2 text-muted">
+                        {{reply.date | date:'MM/dd/yyyy h:MM:ss'}}
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <button type="button" class="btn px-1 shadow-none" (click)="showEditor(reply.id)"
+                    *ngIf="reply.userID === authService.userClient.userID">
+                        Edit
+                    </button>
+                    <button type="button" class="btn px-1 shadow-none" (click)="showModal(reply.id)"
+                    *ngIf="reply.userID === authService.userClient.userID">
+                        Delete
+                    </button>
+                </div>
+            </div>
+            <div>
+                <div *ngIf="editID == reply.id">
+                    <app-edit-comment [model]="reply" (editedEvent)="showEditor($event)"></app-edit-comment>
+                </div>
+            </div>
+        </div>
+
+        <app-modal [message] ="'Are you sure you want to delete this reply?'" [type]="'delete'"></app-modal>
+
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <a *ngIf="replies.hasNextPage" class="btn btn-outline-dark mx-1" (click)="getAll('next')">Next</a> 
+    </div>
+
+    <hr/>
+</ng-template>

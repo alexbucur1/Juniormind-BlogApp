@@ -1,0 +1,31 @@
+<!--This is the layout-->
+<body [ngClass]="{'bg-light': !hideHeaderAndFooter()}">
+    <div>
+    <div class="main-and-footer d-flex flex-column">
+        <app-navbar *ngIf="!hideHeaderAndFooter()">
+            <ul class="navbar-nav flex-grow-1">
+                <app-navbar-links [path] ="''" [text] = "'Home'"></app-navbar-links>
+                <app-navbar-links [path] ="'/users'" [text] = "'Users'" *ngIf="authService.userClient.userIsAdmin"></app-navbar-links>
+            </ul>
+            <app-navbar-account-area [userId]="authService.userClient.userID" [userFullName]="authService.userClient.fullName">
+            </app-navbar-account-area>
+        </app-navbar>
+        <main role="main" class="d-flex flex-elmnt-100-height">
+            <div class="flex-grow-1 container-fluid bg-white container-body px-5" [ngClass]="{'border border-top-0 border-bottom-0': !hideHeaderAndFooter}">
+                <div class="content" *ngIf="!showErrorPage()">
+                <router-outlet></router-outlet>
+                </div>
+                <div class="content" *ngIf="showErrorPage()">
+                    <app-error-page></app-error-page>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer  *ngIf="!hideHeaderAndFooter()" class="footer my-footer py-5 border border-bottom-0 border-start-0 border-end-0 bg-theme-color">
+        <div class="container">
+            &copy; 2021 - Blog App
+        </div>
+    </footer>
+</div>
+</body>
+<!--End of layout-->

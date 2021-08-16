@@ -1,0 +1,22 @@
+.full-post {
+    width: auto;
+    white-space: pre-wrap;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: justify;
+}
+
+.post-img {
+    margin-right: 20px;
+}
+
+@media (min-width: 576px) {
+    .post-img {
+        max-width: 50% !important;
+    }
+}
+
+@media (min-width: 767px) {
+    .img-preview {
+        max-width: 70% !important;
+    }
+}

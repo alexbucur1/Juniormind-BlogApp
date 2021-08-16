@@ -1,0 +1,15 @@
+C:\Users\Gabriela\Documents\GitHub\blog-app\BlogApp\ApplicationCore\bin\Debug\net5.0\BlogApp.Dotnet.ApplicationCore.deps.json
+C:\Users\Gabriela\Documents\GitHub\blog-app\BlogApp\ApplicationCore\bin\Debug\net5.0\BlogApp.Dotnet.ApplicationCore.runtimeconfig.json
+C:\Users\Gabriela\Documents\GitHub\blog-app\BlogApp\ApplicationCore\bin\Debug\net5.0\BlogApp.Dotnet.ApplicationCore.runtimeconfig.dev.json
+C:\Users\Gabriela\Documents\GitHub\blog-app\BlogApp\ApplicationCore\bin\Debug\net5.0\BlogApp.Dotnet.ApplicationCore.dll
+C:\Users\Gabriela\Documents\GitHub\blog-app\BlogApp\ApplicationCore\bin\Debug\net5.0\ref\BlogApp.Dotnet.ApplicationCore.dll
+C:\Users\Gabriela\Documents\GitHub\blog-app\BlogApp\ApplicationCore\bin\Debug\net5.0\BlogApp.Dotnet.ApplicationCore.pdb
+C:\Users\Gabriela\Documents\GitHub\blog-app\BlogApp\ApplicationCore\obj\Debug\net5.0\BlogApp.Dotnet.ApplicationCore.csproj.AssemblyReference.cache
+C:\Users\Gabriela\Documents\GitHub\blog-app\BlogApp\ApplicationCore\obj\Debug\net5.0\BlogApp.Dotnet.ApplicationCore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gabriela\Documents\GitHub\blog-app\BlogApp\ApplicationCore\obj\Debug\net5.0\BlogApp.Dotnet.ApplicationCore.AssemblyInfoInputs.cache
+C:\Users\Gabriela\Documents\GitHub\blog-app\BlogApp\ApplicationCore\obj\Debug\net5.0\BlogApp.Dotnet.ApplicationCore.AssemblyInfo.cs
+C:\Users\Gabriela\Documents\GitHub\blog-app\BlogApp\ApplicationCore\obj\Debug\net5.0\BlogApp.Dotnet.ApplicationCore.csproj.CoreCompileInputs.cache
+C:\Users\Gabriela\Documents\GitHub\blog-app\BlogApp\ApplicationCore\obj\Debug\net5.0\BlogApp.Dotnet.ApplicationCore.dll
+C:\Users\Gabriela\Documents\GitHub\blog-app\BlogApp\ApplicationCore\obj\Debug\net5.0\ref\BlogApp.Dotnet.ApplicationCore.dll
+C:\Users\Gabriela\Documents\GitHub\blog-app\BlogApp\ApplicationCore\obj\Debug\net5.0\BlogApp.Dotnet.ApplicationCore.pdb
+C:\Users\Gabriela\Documents\GitHub\blog-app\BlogApp\ApplicationCore\obj\Debug\net5.0\BlogApp.Dotnet.ApplicationCore.genruntimeconfig.cache

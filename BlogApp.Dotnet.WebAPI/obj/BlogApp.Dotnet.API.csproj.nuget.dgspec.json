@@ -1,0 +1,383 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\BlogApp.Dotnet.WebAPI\\BlogApp.Dotnet.API.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\ApplicationCore\\BlogApp.Dotnet.ApplicationCore.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\ApplicationCore\\BlogApp.Dotnet.ApplicationCore.csproj",
+        "projectName": "BlogApp.Dotnet.ApplicationCore",
+        "projectPath": "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\ApplicationCore\\BlogApp.Dotnet.ApplicationCore.csproj",
+        "packagesPath": "C:\\Users\\Gabriela\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\ApplicationCore\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Gabriela\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
+            "IdentityModel": {
+              "target": "Package",
+              "version": "[5.1.0, )"
+            },
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\BlogApp.Dotnet.WebAPI\\BlogApp.Dotnet.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\BlogApp.Dotnet.WebAPI\\BlogApp.Dotnet.API.csproj",
+        "projectName": "BlogApp.Dotnet.API",
+        "projectPath": "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\BlogApp.Dotnet.WebAPI\\BlogApp.Dotnet.API.csproj",
+        "packagesPath": "C:\\Users\\Gabriela\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\BlogApp.Dotnet.WebAPI\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Gabriela\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\ApplicationCore\\BlogApp.Dotnet.ApplicationCore.csproj": {
+                "projectPath": "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\ApplicationCore\\BlogApp.Dotnet.ApplicationCore.csproj"
+              },
+              "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\Services\\BlogApp.Dotnet.Services.csproj": {
+                "projectPath": "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\Services\\BlogApp.Dotnet.Services.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "IdentityServer4.AccessTokenValidation": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Options.ConfigurationExtensions": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            },
+            "Serilog.Extensions.Logging": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.1.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\DAL\\BlogApp.Dotnet.DAL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\DAL\\BlogApp.Dotnet.DAL.csproj",
+        "projectName": "BlogApp.Dotnet.DAL",
+        "projectPath": "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\DAL\\BlogApp.Dotnet.DAL.csproj",
+        "packagesPath": "C:\\Users\\Gabriela\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\DAL\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Gabriela\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\ApplicationCore\\BlogApp.Dotnet.ApplicationCore.csproj": {
+                "projectPath": "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\ApplicationCore\\BlogApp.Dotnet.ApplicationCore.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Serilog": {
+              "target": "Package",
+              "version": "[2.10.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\Services\\BlogApp.Dotnet.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\Services\\BlogApp.Dotnet.Services.csproj",
+        "projectName": "BlogApp.Dotnet.Services",
+        "projectPath": "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\Services\\BlogApp.Dotnet.Services.csproj",
+        "packagesPath": "C:\\Users\\Gabriela\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\Services\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Gabriela\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\ApplicationCore\\BlogApp.Dotnet.ApplicationCore.csproj": {
+                "projectPath": "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\ApplicationCore\\BlogApp.Dotnet.ApplicationCore.csproj"
+              },
+              "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\DAL\\BlogApp.Dotnet.DAL.csproj": {
+                "projectPath": "C:\\Users\\Gabriela\\Documents\\GitHub\\blog-app\\BlogApp\\DAL\\BlogApp.Dotnet.DAL.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
+            "IdentityServer4": {
+              "target": "Package",
+              "version": "[4.1.2, )"
+            },
+            "IdentityServer4.Storage": {
+              "target": "Package",
+              "version": "[4.1.2, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Serilog": {
+              "target": "Package",
+              "version": "[2.10.0, )"
+            },
+            "system.io.abstractions": {
+              "target": "Package",
+              "version": "[13.2.42, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
